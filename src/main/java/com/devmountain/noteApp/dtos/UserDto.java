@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+//implements the Serialzable interface
+//serves as a marker for Java classes
+//has no data and member method
+//stored in log file
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

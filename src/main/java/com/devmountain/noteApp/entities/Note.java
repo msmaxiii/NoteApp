@@ -20,7 +20,8 @@ public class Note {
 
     @Column(columnDefinition = "text")
     private String body;
-
+//many to one creates association within Hibernate
+// jsonback ref prevents infinite recursion when you deliver the resource up as Json using Restful APi endpoints
     @ManyToOne
     @JsonBackReference
     private User user;

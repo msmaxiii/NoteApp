@@ -9,13 +9,19 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
+//entites tells what class is being mapped to a data source
 @Entity
+
+//
 @Table (name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //private members variable only accessible within the class the reside
+    // to access you must use getters and setters
     @Column(unique = true)
     private String username;
 
@@ -25,10 +31,12 @@ public class User {
     public Long getId() {
         return id;
     }
-
+//used to create the schema
     @OneToMany(mappedBy ="user",fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonManagedReference
     private Set<Note>noteSet = new HashSet<>();
+
+//constructors help create the objects
 
     public void setId(Long id) {
         this.id = id;
@@ -50,14 +58,18 @@ public class User {
         this.password = password;
     }
 
+
+    // no argument contructor
     public User() {
     }
-
+    //all argument constructor
     public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
+
+    // logic for database
     public User(UserDto userDto){
         if(userDto.getUsername() !=null){
             this.username = userDto.getUsername();
