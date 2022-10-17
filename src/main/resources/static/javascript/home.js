@@ -1,5 +1,5 @@
 
-//Cookie
+/Cookie
 const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
@@ -8,7 +8,7 @@ const submitForm = document.getElementById("note-form")
 const noteContainer = document.getElementById("note-container")
 
 //Modal Elements
-let noteBody = document.getElementById(`note-body`)
+let noteBody = document.getElementById(note-body)
 let updateNoteBtn = document.getElementById('update-note-button')
 
 const headers = {
@@ -27,7 +27,7 @@ const handleSubmit = async (e) => {
 }
 
 async function addNote(obj) {
-    const response = await fetch(`${baseUrl}user/${userId}`, {
+    const response = await fetch(${baseUrl}user/${userId}, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
@@ -36,28 +36,27 @@ async function addNote(obj) {
     if (response.status == 200) {
         return getNotes(userId);
     }
+    async function getNotes(userId) {
+        await fetch(${baseUrl}user/${userId}, {
+            method: "GET",
+            headers: headers
+        })
+            .then(response => response.json())
+            .then(data => createNoteCards(data))
+            .catch(err => console.error(err))
+    }
+
+    async function handleDelete(noteId){
+        await fetch(baseUrl + noteId, {
+            method: "DELETE",
+            headers: headers
+        })
+            .catch(err => console.error(err))
+
+        return getNotes(userId);
+    }
+   }
 }
-
-async function getNotes(userId) {
-    await fetch(`${baseUrl}user/${userId}`, {
-        method: "GET",
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(data => createNoteCards(data))
-        .catch(err => console.error(err))
-}
-
-async function handleDelete(noteId){
-    await fetch(baseUrl + noteId, {
-        method: "DELETE",
-        headers: headers
-    })
-        .catch(err => console.error(err))
-
-    return getNotes(userId);
-}
-
 async function getNoteById(noteId){
     await fetch(baseUrl + noteId, {
         method: "GET",
@@ -89,7 +88,7 @@ const createNoteCards = (array) => {
     array.forEach(obj => {
         let noteCard = document.createElement("div")
         noteCard.classList.add("m-2")
-        noteCard.innerHTML = `
+        noteCard.innerHTML =
             <div class="card d-flex" style="width: 18rem; height: 18rem;">
                 <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
                     <p class="card-text">${obj.body}</p>
@@ -102,7 +101,7 @@ const createNoteCards = (array) => {
                     </div>
                 </div>
             </div>
-        `
+
         noteContainer.append(noteCard);
     })
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 //defines Restful API endpoints
 //creates paths to deliver information to clients
 @RestController
-@RequestMapping("http://localhost:8080/api/v1/notes")
+@RequestMapping("/api/v1/notes")
 public class NoteController {
     @Autowired
     private NoteService noteService;
@@ -32,7 +32,7 @@ public class NoteController {
         noteService.deleteNoteById(noteId);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping
     public void updateNote(@RequestBody NoteDto noteDto) {
         noteService.updateNoteById(noteDto);
     }

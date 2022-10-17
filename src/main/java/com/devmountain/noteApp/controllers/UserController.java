@@ -17,7 +17,7 @@ import java.util.List;
 //interacts with ServiceLayers and PasswordEncoder
 //handles POST request to register User
 @RestController
-@RequestMapping("http://localhost:8080/api/v1/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
     private UserService userService;
