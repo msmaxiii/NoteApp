@@ -1,5 +1,5 @@
 
-/Cookie
+//Cookie
 const cookieArr = document.cookie.split("=")
 const userId = cookieArr[1];
 
@@ -9,7 +9,7 @@ const noteContainer = document.getElementById("note-container")
 
 //Modal Elements
 let noteBody = document.getElementById("note-body")
-let updateNoteBtn = document.getElementById('update-note-button')
+let updateNoteBtn = document.getElementById("update-note-button")
 
 const headers = {
     'Content-Type': 'application/json'
@@ -36,6 +36,7 @@ async function addNote(obj) {
     if (response.status == 200) {
         return getNotes(userId);
     }
+    }
     async function getNotes(userId) {
         await fetch(`${baseUrl}user/${userId}`, {
             method: "GET",
@@ -55,8 +56,8 @@ async function addNote(obj) {
 
         return getNotes(userId);
     }
-   }
-}
+
+
 async function getNoteById(noteId){
     await fetch(baseUrl + noteId, {
         method: "GET",
@@ -88,7 +89,7 @@ const createNoteCards = (array) => {
     array.forEach(obj => {
         let noteCard = document.createElement("div")
         noteCard.classList.add("m-2")
-        noteCard.innerHTML =
+        noteCard.innerHTML =`
             <div class="card d-flex" style="width: 18rem; height: 18rem;">
                 <div class="card-body d-flex flex-column  justify-content-between" style="height: available">
                     <p class="card-text">${obj.body}</p>
@@ -101,7 +102,7 @@ const createNoteCards = (array) => {
                     </div>
                 </div>
             </div>
-
+            `
         noteContainer.append(noteCard);
     })
 }
@@ -110,6 +111,7 @@ function handleLogout(){
     for(let i in c){
         document.cookie = /^[^=]+/.exec(c[i])[0]+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
     }
+
 }
 
 const populateModal = (obj) =>{
@@ -126,3 +128,4 @@ updateNoteBtn.addEventListener("click", (e)=>{
     let noteId = e.target.getAttribute('data-note-id')
     handleNoteEdit(noteId);
 })
+

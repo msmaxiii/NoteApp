@@ -37,7 +37,7 @@ public class NoteController {
         noteService.deleteNoteById(noteId);
     }
 
-    @PutMapping("/{noteId}")
+    @PutMapping
     public void updateNote(@RequestBody NoteDto noteDto){
         noteService.updateNoteById(noteDto);
     }
