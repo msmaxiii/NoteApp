@@ -1,8 +1,8 @@
 package com.devmountain.noteApp.services;
 
 import com.devmountain.noteApp.dtos.UserDto;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface UserService {

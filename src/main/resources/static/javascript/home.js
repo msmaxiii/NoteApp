@@ -8,7 +8,7 @@ const submitForm = document.getElementById("note-form")
 const noteContainer = document.getElementById("note-container")
 
 //Modal Elements
-let noteBody = document.getElementById(note-body)
+let noteBody = document.getElementById("note-body")
 let updateNoteBtn = document.getElementById('update-note-button')
 
 const headers = {
@@ -27,7 +27,7 @@ const handleSubmit = async (e) => {
 }
 
 async function addNote(obj) {
-    const response = await fetch(${baseUrl}user/${userId}, {
+    const response = await fetch(`${baseUrl}user/${userId}`, {
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
@@ -37,7 +37,7 @@ async function addNote(obj) {
         return getNotes(userId);
     }
     async function getNotes(userId) {
-        await fetch(${baseUrl}user/${userId}, {
+        await fetch(`${baseUrl}user/${userId}`, {
             method: "GET",
             headers: headers
         })

@@ -12,34 +12,34 @@ import java.util.Optional;
 //defines Restful API endpoints
 //creates paths to deliver information to clients
 @RestController
-@RequestMapping("/api/v1/notes")
+@RequestMapping("api/v1/notes")
 public class NoteController {
     @Autowired
     private NoteService noteService;
 
     @GetMapping("/user/{userId}")
-    public List<NoteDto> getAllNotesByUserId(@PathVariable Long userId) {
+    public List<NoteDto> getNotesByUser(@PathVariable Long userId){
         return noteService.getAllNotesByUserId(userId);
     }
 
+    @GetMapping("/{noteId}")
+    public Optional<NoteDto> getNoteById(@PathVariable Long noteId){
+        return noteService.getNoteById(noteId);
+    }
+
     @PostMapping("/user/{userId}")
-    public void addNote(NoteDto noteDto, Long userId) {
+    public void addNote(@RequestBody NoteDto noteDto,@PathVariable Long userId){
         noteService.addNote(noteDto, userId);
     }
 
     @DeleteMapping("/{noteId}")
-    public void deleteNoteById(@PathVariable Long noteId) {
+    public void deleteNoteById(@PathVariable Long noteId){
         noteService.deleteNoteById(noteId);
     }
 
-    @PutMapping
-    public void updateNote(@RequestBody NoteDto noteDto) {
+    @PutMapping("/{noteId}")
+    public void updateNote(@RequestBody NoteDto noteDto){
         noteService.updateNoteById(noteDto);
-    }
-
-    @GetMapping("/{noteId}")
-    public Optional<NoteDto> getNoteById(@PathVariable Long noteId) {
-       return noteService.getNoteById(noteId);
     }
 }
 
